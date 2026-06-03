@@ -1,12 +1,238 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tamanna Cable Networks & WiFi Service</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#111;
+color:white;
+}
+
+header{
+background:#7a0000;
+padding:25px;
+text-align:center;
+}
+
+header h1{
+font-size:32px;
+}
+
+header p{
+margin-top:10px;
+}
+
+.container{
+width:90%;
+max-width:1000px;
+margin:auto;
+padding:20px;
+}
+
+.card{
+background:#1f1f1f;
+padding:20px;
+margin-top:20px;
+border-radius:10px;
+}
+
+h2{
+color:#ff4d4d;
+margin-bottom:15px;
+}
+
+input,select{
+width:100%;
+padding:12px;
+margin:8px 0;
+border:none;
+border-radius:5px;
+}
+
+button{
+width:100%;
+padding:12px;
+background:#7a0000;
+color:white;
+border:none;
+border-radius:5px;
+font-size:16px;
+cursor:pointer;
+}
+
+button:hover{
+background:#a00000;
+}
+
+.plan{
+padding:10px;
+margin:10px 0;
+background:#2b2b2b;
+border-radius:5px;
+}
+
+.qr{
+text-align:center;
+}
+
+.qr img{
+max-width:300px;
+width:100%;
+border-radius:10px;
+}
+
+footer{
+background:#000;
+text-align:center;
+padding:20px;
+margin-top:30px;
+}
+</style>
+
 </head>
+
 <body>
+
+<header>
 <h1>Tamanna Cable Networks & WiFi Service</h1>
-<p>Website setup in progress.</p>
-<p>Contact: 9425680793, 9752783303</p>
+<p>High Speed Internet & Cable TV Services</p>
+<p>📞 9425680793 | 9752783303</p>
+</header>
+
+<div class="container">
+
+<div class="card">
+<h2>WiFi Plans</h2>
+
+<div class="plan">₹350 - 30 Mbps Unlimited - 30 Days</div>
+<div class="plan">₹450 - 50 Mbps Unlimited - 30 Days</div>
+</div>
+
+<div class="card">
+<h2>WiFi Recharge</h2>
+
+<input type="text" id="wifiName" placeholder="Customer Name">
+
+<input type="text" id="wifiMobile" placeholder="Mobile Number">
+
+<input type="text" id="wifiID" placeholder="Customer ID">
+
+<select id="wifiPlan">
+<option>₹350 - 30 Mbps Unlimited</option>
+<option>₹450 - 50 Mbps Unlimited</option>
+</select>
+
+<button onclick="wifiRecharge()">
+Send WiFi Recharge Details on WhatsApp
+</button>
+</div>
+
+<div class="card">
+<h2>Cable Plans</h2>
+
+<div class="plan">₹200 - FTA Pack</div>
+<div class="plan">₹300 - Standard Pack (200+ SD Channels)</div>
+<div class="plan">₹350 - Sports Pack (300+ SD Channels + Sports Channels)</div>
+<div class="plan">₹550 - HD Premium Pack (100+ HD Channels + 300+ SD Channels)</div>
+</div>
+
+<div class="card">
+<h2>Cable Recharge</h2>
+
+<input type="text" id="cableName" placeholder="Customer Name">
+
+<input type="text" id="cableMobile" placeholder="Mobile Number">
+
+<input type="text" id="cardNo" placeholder="Cable Card Number">
+
+<select id="cablePlan">
+<option>₹200 - FTA Pack</option>
+<option>₹300 - Standard Pack</option>
+<option>₹350 - Sports Pack</option>
+<option>₹550 - HD Premium Pack</option>
+</select>
+
+<button onclick="cableRecharge()">
+Send Cable Recharge Details on WhatsApp
+</button>
+</div>
+
+<div class="card qr">
+<h2>Scan & Pay</h2>
+
+<img src="upi-qr.jpg" alt="UPI QR">
+
+<p style="margin-top:15px;">
+Scan the QR Code and complete your payment.
+</p>
+
+<p style="margin-top:10px;">
+Payment Receiver: Rohit Batham
+</p>
+</div>
+
+</div>
+
+<footer>
+© 2026 Tamanna Cable Networks & WiFi Service
+</footer>
+
+<script>
+
+const whatsapp = "919425680793";
+
+function wifiRecharge(){
+
+let msg =
+`Hello Tamanna Cable Networks,
+
+WiFi Recharge Request
+
+Name: ${document.getElementById("wifiName").value}
+Mobile: ${document.getElementById("wifiMobile").value}
+Customer ID: ${document.getElementById("wifiID").value}
+Plan: ${document.getElementById("wifiPlan").value}
+
+Please activate my recharge.`;
+
+window.open(
+"https://wa.me/" + whatsapp + "?text=" + encodeURIComponent(msg)
+);
+
+}
+
+function cableRecharge(){
+
+let msg =
+`Hello Tamanna Cable Networks,
+
+Cable Recharge Request
+
+Name: ${document.getElementById("cableName").value}
+Mobile: ${document.getElementById("cableMobile").value}
+Cable Card No: ${document.getElementById("cardNo").value}
+Package: ${document.getElementById("cablePlan").value}
+
+Please activate my recharge.`;
+
+window.open(
+"https://wa.me/" + whatsapp + "?text=" + encodeURIComponent(msg)
+);
+
+}
+
+</script>
+
 </body>
 </html>
