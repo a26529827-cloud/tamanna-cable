@@ -1,237 +1,150 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tamanna Cable Networks & WiFi Service</title>
-
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
-}
-
-body{
-background:#111;
-color:white;
-}
-
-header{
-background:#7a0000;
-padding:25px;
-text-align:center;
-}
-
-header h1{
-font-size:32px;
-}
-
-header p{
-margin-top:10px;
-}
-
-.container{
-width:90%;
-max-width:1000px;
-margin:auto;
-padding:20px;
-}
-
-.card{
-background:#1f1f1f;
-padding:20px;
-margin-top:20px;
-border-radius:10px;
-}
-
-h2{
-color:#ff4d4d;
-margin-bottom:15px;
-}
-
-input,select{
-width:100%;
-padding:12px;
-margin:8px 0;
-border:none;
-border-radius:5px;
-}
-
-button{
-width:100%;
-padding:12px;
-background:#7a0000;
-color:white;
-border:none;
-border-radius:5px;
-font-size:16px;
-cursor:pointer;
-}
-
-button:hover{
-background:#a00000;
-}
-
-.plan{
-padding:10px;
-margin:10px 0;
-background:#2b2b2b;
-border-radius:5px;
-}
-
-.qr{
-text-align:center;
-}
-
-.qr img{
-max-width:300px;
-width:100%;
-border-radius:10px;
-}
-
-footer{
-background:#000;
-text-align:center;
-padding:20px;
-margin-top:30px;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#111;color:#fff}
+header{background:#7a0000;padding:25px;text-align:center}
+.container{max-width:900px;margin:auto;padding:20px}
+.card{background:#1f1f1f;padding:20px;border-radius:12px;margin-top:20px}
+h2{margin-bottom:15px;color:#ff6666}
+button{background:#7a0000;color:#fff;border:none;padding:12px 18px;border-radius:6px;cursor:pointer}
+input,select{width:100%;padding:12px;margin:8px 0;border-radius:6px;border:none}
+.hidden{display:none}
+.qr img{max-width:300px;width:100%}
+footer{text-align:center;padding:20px;margin-top:30px;background:#000}
 </style>
-
 </head>
-
 <body>
 
 <header>
 <h1>Tamanna Cable Networks & WiFi Service</h1>
-<p>High Speed Internet & Cable TV Services</p>
-<p>📞 9425680793 | 9752783303</p>
+<p>Contact: 9425680793 | 9752783303</p>
 </header>
 
 <div class="container">
 
 <div class="card">
-<h2>WiFi Plans</h2>
-
-<div class="plan">₹350 - 30 Mbps Unlimited - 30 Days</div>
-<div class="plan">₹450 - 50 Mbps Unlimited - 30 Days</div>
+<h2>Select Service</h2>
+<select id="service" onchange="showService()">
+<option value="">Choose Service</option>
+<option value="wifi">WiFi Recharge</option>
+<option value="cable">Cable Recharge</option>
+</select>
 </div>
 
-<div class="card">
+<div id="wifiSection" class="card hidden">
 <h2>WiFi Recharge</h2>
-
-<input type="text" id="wifiName" placeholder="Customer Name">
-
-<input type="text" id="wifiMobile" placeholder="Mobile Number">
-
-<input type="text" id="wifiID" placeholder="Customer ID">
+<input id="wifiName" placeholder="Customer Name">
+<input id="wifiMobile" placeholder="Mobile Number">
+<input id="wifiId" placeholder="Customer ID">
 
 <select id="wifiPlan">
-<option>₹350 - 30 Mbps Unlimited</option>
-<option>₹450 - 50 Mbps Unlimited</option>
+<option>₹350 - 30 Mbps Unlimited - 30 Days</option>
+<option>₹450 - 50 Mbps Unlimited - 30 Days</option>
 </select>
 
-<button onclick="wifiRecharge()">
-Send WiFi Recharge Details on WhatsApp
-</button>
+<button onclick="showWifiPayment()">Proceed to Payment</button>
+
+<div id="wifiPayment" class="hidden qr" style="margin-top:20px">
+<h3>Scan & Pay</h3>
+<img src="upi-qr.jpg" alt="UPI QR">
+<p>Payment Receiver: Rohit Batham</p>
+<p>After payment, attach screenshot in WhatsApp.</p>
+<br>
+<button onclick="wifiWhatsapp()">Open WhatsApp & Send Details</button>
+</div>
 </div>
 
-<div class="card">
-<h2>Cable Plans</h2>
-
-<div class="plan">₹200 - FTA Pack</div>
-<div class="plan">₹300 - Standard Pack (200+ SD Channels)</div>
-<div class="plan">₹350 - Sports Pack (300+ SD Channels + Sports Channels)</div>
-<div class="plan">₹550 - HD Premium Pack (100+ HD Channels + 300+ SD Channels)</div>
-</div>
-
-<div class="card">
+<div id="cableSection" class="card hidden">
 <h2>Cable Recharge</h2>
-
-<input type="text" id="cableName" placeholder="Customer Name">
-
-<input type="text" id="cableMobile" placeholder="Mobile Number">
-
-<input type="text" id="cardNo" placeholder="Cable Card Number">
+<input id="cableName" placeholder="Customer Name">
+<input id="cableMobile" placeholder="Mobile Number">
+<input id="cardNo" placeholder="Cable Card Number">
 
 <select id="cablePlan">
 <option>₹200 - FTA Pack</option>
-<option>₹300 - Standard Pack</option>
+<option>₹300 - Standard Pack (200+ SD Channels)</option>
 <option>₹350 - Sports Pack</option>
 <option>₹550 - HD Premium Pack</option>
 </select>
 
-<button onclick="cableRecharge()">
-Send Cable Recharge Details on WhatsApp
-</button>
-</div>
+<button onclick="showCablePayment()">Proceed to Payment</button>
 
-<div class="card qr">
-<h2>Scan & Pay</h2>
-
+<div id="cablePayment" class="hidden qr" style="margin-top:20px">
+<h3>Scan & Pay</h3>
 <img src="upi-qr.jpg" alt="UPI QR">
-
-<p style="margin-top:15px;">
-Scan the QR Code and complete your payment.
-</p>
-
-<p style="margin-top:10px;">
-Payment Receiver: Rohit Batham
-</p>
+<p>Payment Receiver: Rohit Batham</p>
+<p>After payment, attach screenshot in WhatsApp.</p>
+<br>
+<button onclick="cableWhatsapp()">Open WhatsApp & Send Details</button>
+</div>
 </div>
 
 </div>
 
 <footer>
-© 2026 Tamanna Cable Networks & WiFi Service
+© Tamanna Cable Networks & WiFi Service
 </footer>
 
 <script>
+const whatsapp="919425680793";
 
-const whatsapp = "919425680793";
+function showService(){
+let s=document.getElementById("service").value;
+document.getElementById("wifiSection").classList.add("hidden");
+document.getElementById("cableSection").classList.add("hidden");
 
-function wifiRecharge(){
+if(s==="wifi") document.getElementById("wifiSection").classList.remove("hidden");
+if(s==="cable") document.getElementById("cableSection").classList.remove("hidden");
+}
 
-let msg =
-`Hello Tamanna Cable Networks,
+function showWifiPayment(){
+document.getElementById("wifiPayment").classList.remove("hidden");
+}
+
+function showCablePayment(){
+document.getElementById("cablePayment").classList.remove("hidden");
+}
+
+function wifiWhatsapp(){
+let msg=`Hello Tamanna Cable Networks,
 
 WiFi Recharge Request
 
 Name: ${document.getElementById("wifiName").value}
 Mobile: ${document.getElementById("wifiMobile").value}
-Customer ID: ${document.getElementById("wifiID").value}
+Customer ID: ${document.getElementById("wifiId").value}
 Plan: ${document.getElementById("wifiPlan").value}
+
+Payment completed.
+I am attaching the payment screenshot.
 
 Please activate my recharge.`;
 
-window.open(
-"https://wa.me/" + whatsapp + "?text=" + encodeURIComponent(msg)
-);
-
+window.open("https://wa.me/"+whatsapp+"?text="+encodeURIComponent(msg));
 }
 
-function cableRecharge(){
-
-let msg =
-`Hello Tamanna Cable Networks,
+function cableWhatsapp(){
+let msg=`Hello Tamanna Cable Networks,
 
 Cable Recharge Request
 
 Name: ${document.getElementById("cableName").value}
 Mobile: ${document.getElementById("cableMobile").value}
 Cable Card No: ${document.getElementById("cardNo").value}
-Package: ${document.getElementById("cablePlan").value}
+Plan: ${document.getElementById("cablePlan").value}
+
+Payment completed.
+I am attaching the payment screenshot.
 
 Please activate my recharge.`;
 
-window.open(
-"https://wa.me/" + whatsapp + "?text=" + encodeURIComponent(msg)
-);
-
+window.open("https://wa.me/"+whatsapp+"?text="+encodeURIComponent(msg));
 }
-
 </script>
 
 </body>
